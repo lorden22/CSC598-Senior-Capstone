@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<!-- shows survey results -->
+<!-- resultspass.html -->
+<html>
+   <head>
+      <meta charset = "utf-8">
+      <title>The Creighton ROTC Survey Destination</title>
+	  <link rel="stylesheet" href="surveyhome2.css">
+	 <script>
+		 let currQuestions = [];
+		 let currAnswers = [];
+	 </script>
+	 <script> 
+	 function loadQuestions() {
+		  var xhr = new XMLHttpRequest();
+		  xhr.open('GET','http://localhost:8080/getALlSurveyNames',true)
+		  xhr.onload = function loadQuestions2() { //this function loads all of the suvey names in the db
+			  var surveryQuestions = xhr.response;
+			  var myArr = JSON.parse(surveryQuestions);
+			  window.myArr2 = myArr.reverse(); //displays the survey with the most recent at the top
+			  for (let i = 0; i<myArr2.length; i++){
+			  document.getElementById('surveys1').innerHTML+=
+			  "<option id='surveys2' value='"+window.myArr2[i]+"'>";
+			  }
+		  }
+		  xhr.send();
+		 }
+		  
+		function myFunction() {
+			var test= document.getElementById('test');
+			var title= document.getElementById('title');
+			var survey=document.getElementById('surveybro').value;
+			test.remove();
+			title.remove();
+			document.getElementById('demo').innerHTML="<h2 id='surveryNameOnLoad'>"+survey+"</h2>";
+			
+			var xhr1 = new XMLHttpRequest();
+			xhr1.open('GET', 'http://localhost:8080/getQuestionsByTemplate?templateName=Event Registration', true);
+			xhr1.onload = function loadQuestions () {
+			var data = JSON.parse(xhr1.responseText);
+			for (let index = 0; index < data.length; index++) {
+				console.log("Question " + data[index].id +  ": " + data[index].name);
+				currQuestions[index] = data[index].name
+				document.getElementById('demo').innerHTML +="<br /> Question " + data[index].id +  ": " + data[index].name + "   <input type='text' id='Q"+data[index].id+"' name='Q"+data[index].id+"'>";
+			}
+			document.getElementById('button').innerHTML +="<button onclick='submitAnswers()'>Submit</button>";
+			}
+			xhr1.send();
+		  }
+
+		/*function submitAnswers() {
+			let responeMap = {'surveyName':document.getElementById('surveryNameOnLoad').innerHTML,'templateName':'Event Registration'};
+			let questionAndAnswerMap = {}
+			for (let index = 1; index <= currQuestions.length; index++) {
+				var currAnswerInputObject = document.getElementById('Q'+index.toString())
+				currAnswerInputValue = currAnswerInputObject.value;
+				questionAndAnswerMap[currQuestions[index-1]] = currAnswerInputValue;
+			}
+			console.log(responeMap);
+			console.log(questionAndAnswerMap);
+			responeMap['questionAnswerMap'] = questionAndAnswerMap;
+			console.log(responeMap);
+			
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST','http://localhost:8080/submitAnswers',true);
+			xhr.setRequestHeader("Content-Type", "application/json");
+			xhr.send(JSON.stringify(responeMap));
+			window.alert("Thank you for submitting answers to " + document.getElementById('surveryNameOnLoad').innerHTML);
+			location.reload();
+		}*/
+
+		function loadResp() {
+			var survey1 = document.getElementById('surveys2').value;
+			  console.log(survey1);
+			console.log("Function is working");
+			//test.remove();
+			title.remove();
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', 'http://localhost:8080/getSurveyDetails?name=Mandatory fun time', true);
+			xhr.onload = function loadResp2() {
+			var surveryResponces = xhr.response;
+			  var myArr = JSON.parse(surveryResponces);
+			  console.log(myArr);
+			  let survey = document.getElementById('surveys2').value;
+			  console.log(survey);
+			  document.getElementById('demo').innerHTML = "<h2 id='surveryNameOnLoad'>"+survey+"</h2> <br />";
+			  for (let index = 0; index < myArr.length; index++) {
+				  console.log("Question: " + myArr[index].question + "                        Response: " + myArr[index].response);
+				  document.getElementById('table').innerHTML += "<td> &nbsp&nbsp&nbsp"+ myArr[index].question + "</td><td>&nbsp&nbsp&nbsp "+ myArr[index].response +  "</td></tr>";
+			  }
+			  document.getElementById('demo').innerHTML += "<button onclick='reloadPage()'>Exit</button>"
+			  
+			}
+			xhr.send();
+		}
+	  </script>
+   </head>
+   
+   <body onload="loadQuestions()">
+		<!--<img id "logo2" alt="Logo" src="curotclogo.jpeg">-->
+		<div class="head">
+			<img id "logo3" alt="Logo" src="cuschoollogo.png">
+			<h1> The Creighton ROTC Survey Destination </h1>
+			<img id "logo1" alt="Logo" src="rotclogo.png">
+		</div>
+	
+		<nav class = "navbar">
+			<ul>
+				<li><a href="companysurveysite.html"> Home</a></li>
+				<li><a href="createsurveyoption.html"> Create survey</a></li>
+				<li><a href="takesurveys.html"> Take survey</a></li>
+				<li><a href="passpage.html"> View Results</a></li>
+				<li><a href="https://www.creighton.edu/groups/armyrotc/whatisarmyrotc/"> About Us</a></li>
+				<li><a href="contactus.html"> Contact Us</a></li>
+			<ul>
+		</nav>
+		
+		<h2 id='title'> Results </h2>
+		
+		<div id="surveys">
+		
+		</div>
+		<div id='test'></div>
+			<form >
+				<input list="surveys1" name="surveys1">
+				<datalist id="surveys1">
+					
+				</datalist>
+				<input type="button" value="go" onclick='loadResp()'></input>
+			</form>
+			
+		</div>
+		
+		<p id="name"></p>
+		<p id='demo'></p>
+		<table id='table' border=1>
+		</table>
+		<p id='button'></p>
+   </body>
+ </html>

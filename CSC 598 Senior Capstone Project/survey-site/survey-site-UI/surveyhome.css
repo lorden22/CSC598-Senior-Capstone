@@ -1,0 +1,157 @@
+/* Stylesheet for c2chome */
+html {
+	background-color:rgba(145, 191, 191, .8);
+	font-family: arial;
+}
+body {
+	margin-left:10%;
+	margin-right: 10%;
+	/*background-color: white;*/
+	padding:5px;
+	/*border: 1px solid lightblue;*/
+}
+
+h1 {
+	color: black;
+}
+
+A {
+	color:red;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  /*background-color:darkgreen;*/
+}
+
+li {
+	display:inline;
+}
+
+li a {
+	color:white;
+}
+
+img {
+	width:10%;
+	margin: 5px;
+	white-space: nowrap;
+}
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+  transition: 0.3s;
+  width: 25%;
+  min-width:200px;
+  min-height:120px;
+  /*height:50%;*/
+  float:left;
+  margin:2%;
+  text-align:center;
+  border-radius:25px;
+}
+
+#card1 {
+	background-color:#EADDCA;
+}
+
+#card2 {
+	background-color:#C0C0C0;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+
+/* start of style for the 1st cards button*/
+.styled1 {
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: #684019;
+    background-image: linear-gradient(to top left,
+                                      rgba(0, 0, 0, .2),
+                                      rgba(0, 0, 0, .2) 30%,
+                                      rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+
+.styled1:hover {
+    background-color: rgba(255, 0, 0, 1);
+}
+
+.styled1:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+/* end of style for the 1st cards button*/
+
+
+
+
+/*navbar*/
+
+a {
+  text-decoration: none;
+}
+
+.navbar {
+  background-color: #333333;
+  display: flex;
+  align-items:center;
+}
+
+.navbar a {
+  color: #e7e7e7;
+}
+
+.navbar .brand {
+  display: block;
+  padding: 0 24px;
+  font-size: 24px;
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  align-items:center;
+  justify-content: flex-start;
+}
+
+.navbar ul li a {
+  color: #e7e7e7;
+  padding: 24px;
+  display: block;
+}
+
+.navbar ul a:hover,
+.navbar ul a:focus,
+.navbar ul .active {
+  background-color: red;
+}
+
+/* head thing haha*/
+
+.head {
+	display: flex;
+	align-items:center;
+	font-family: arial;
+}
+

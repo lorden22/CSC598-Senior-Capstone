@@ -1,0 +1,22 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.survey.site.api.mappers.SurveyMapper">
+    <resultMap id="question" type="com.survey.site.api.dto.Question">
+        <id property="id" column="question_id"/>
+        <result property="name" column="question"/>
+        <result property="templateName" column="template_name"/>
+    </resultMap>
+
+    <resultMap id="response" type="com.survey.site.api.dto.Response">
+        <id property="id" column="response_id"/>
+        <result property="questionId" column="question_id"/>
+
+    </resultMap>
+
+    <select id="getQuestionsByTemplate" resultMap="question">
+        SELECT *
+        FROM questions
+        WHERE template_name = #{template}
+    </select>
+
+</mapper>

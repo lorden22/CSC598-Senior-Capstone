@@ -1,0 +1,71 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.survey.site.api.mappers.SurveyMapper">
+    <resultMap id="question" type="com.survey.site.api.dto.Question">
+        <id property="id" column="question_id"/>
+        <result property="name" column="question"/>
+        <result property="templateName" column="template_name"/>
+    </resultMap>
+
+    <resultMap id="response" type="com.survey.site.api.dto.Response">
+        <id property="id" column="response_id"/>
+        <result property="questionId" column="question_id"/>
+        <result property="response" column="response"/>
+    </resultMap>
+
+    <resultMap id="survey" type="com.survey.site.api.dto.Survey">
+        <result property="name" column="survey_name"/>
+        <result property="question" column="question"/>
+        <result property="response" column="response"/>
+    </resultMap>
+
+    <select id="getQuestionsByTemplate" resultMap="question">
+        SELECT *
+        FROM questions
+        WHERE template_name = #{template}
+    </select>
+
+    <insert id="createSurvey">
+        INSERT INTO surveyAll(survey_name, template_name)
+        VALUES (#{name}, #{templateName})
+
+        <selectKey resultType="Long" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    
+    <select id="getSurveyIdFromSurveyName" resultType="Long">
+        SELECT survey_all_id
+        FROM surveyAll
+        WHERE survey_name = #{name}
+    </select>
+
+    <insert id="submitResponse">
+        INSERT INTO responses (question_id, response, survey_all_id)
+        VALUES
+        (
+            (
+                SELECT question_id
+                FROM questions
+                WHERE question = #{question}
+                AND template_name = #{template}
+            ),
+            #{response},
+            #{surveyId}
+        )
+    </insert>
+
+    <select id="getSurveyNames" resultType="String">
+        SELECT survey_name
+        FROM surveyAll
+    </select>
+
+    <select id="getSurveyDetails" resultMap="survey">
+        SELECT survey_name, question, response
+        FROM responses r
+        JOIN questions q ON r.question_id = q.question_id
+        JOIN surveyAll s ON s.survey_all_id = r.survey_all_id
+        WHERE survey_name = #{name}
+    </select>
+
+</mapper>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<!-- shows survey results -->
+<!-- resultspass.html -->
+<!-- Drew Ernsdorff -->
+<html>
+   <head>
+      <meta charset = "utf-8">
+      <title>The Creighton ROTC Survey Destination</title>
+	  <link rel="stylesheet" href="surveyhome2.css">
+	 <script>
+		 let currQuestions = [];
+		 let currAnswers = [];
+	 </script>
+	 <script> 
+	 function checkPassword(){
+		 var pass= document.getElementById('password').value;
+		 var password=parseInt(pass);
+		 if (password==1){
+		 window.location.href = 'resultspass.html';
+		 } else {
+		 document.write('Password is not correct, try again');
+		 }
+	 }
+	</script>
+   </head>
+   
+   <body>
+		<!--<img id "logo2" alt="Logo" src="curotclogo.jpeg">-->
+		<div class="head">
+			<img id "logo3" alt="Logo" src="cuschoollogo.png">
+			<h1> The Creighton ROTC Survey Destination </h1>
+			<img id "logo1" alt="Logo" src="rotclogo.png">
+		</div>
+	
+		<nav class = "navbar">
+			<ul>
+				<li><a href="companysurveysite.html"> Home</a></li>
+				<li><a href="createsurveyoption.html"> Create survey</a></li>
+				<li><a href="takesurveys.html"> Take survey</a></li>
+				<li><a href="passpage.html"> View Results</a></li>
+				<li><a href="https://www.creighton.edu/groups/armyrotc/whatisarmyrotc/"> About Us</a></li>
+				<li><a href="contactus.html"> Contact Us</a></li>
+			<ul>
+		</nav>
+		
+		<h2 id='title'> Results </h2>
+		<form>
+			<label for="password">Password</label><br>
+			<input type="text" id="password" name="password"><br>
+		</form>
+		<button onclick="checkPassword()">Check password</button>
+		
+   </body>
+ </html>

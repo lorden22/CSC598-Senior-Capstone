@@ -1,0 +1,67 @@
+/* Stylesheet for c2chome */
+html {
+	background-color:rgba(75, 83, 32, .6);
+}
+body {
+	margin-left:10%;
+	margin-right: 10%;
+	/*background-color: white;*/
+	padding:5px;
+	/*border: 1px solid lightblue;*/
+}
+
+h1 {
+	color: black;
+}
+
+img {
+	width:10%;
+	margin: 5px;
+	white-space: nowrap;
+}
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+  transition: 0.3s;
+  width: 70%;
+  height:50%;
+  display:block;
+  margin:5px;
+  text-align:left;
+  border-radius:25px;
+}
+
+#card1 {
+	background-color:#EADDCA;
+}
+
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+
+/* start of style for the 1st cards button*/
+.styled1 {
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: #684019;
+    background-image: linear-gradient(to top left,
+                                      rgba(0, 0, 0, .2),
+                                      rgba(0, 0, 0, .2) 30%,
+                                      rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
